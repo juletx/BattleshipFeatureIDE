@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+	<configuration>
+		<feature automatic="selected" manual="undefined" name="battle_SPL"/>
+		<feature automatic="selected" manual="undefined" name="About"/>
+		<feature automatic="selected" manual="undefined" name="Difficulty"/>
+		<feature automatic="unselected" manual="undefined" name="Beginner"/>
+		<feature automatic="undefined" manual="selected" name="Intermediate"/>
+		<feature automatic="unselected" manual="undefined" name="Expert"/>
+		<feature automatic="undefined" manual="undefined" name="Statistics"/>
+		<feature automatic="undefined" manual="undefined" name="Challenge"/>
+		<feature automatic="undefined" manual="undefined" name="PlayerNames"/>
+		<feature automatic="undefined" manual="undefined" name="Computer"/>
+		<feature automatic="undefined" manual="undefined" name="Strategy"/>
+		<feature automatic="undefined" manual="undefined" name="Row"/>
+		<feature automatic="undefined" manual="undefined" name="TopDown"/>
+		<feature automatic="undefined" manual="undefined" name="BottomUp"/>
+		<feature automatic="undefined" manual="undefined" name="RandomRow"/>
+		<feature automatic="undefined" manual="undefined" name="Column"/>
+		<feature automatic="undefined" manual="undefined" name="LeftRight"/>
+		<feature automatic="undefined" manual="undefined" name="RightLeft"/>
+		<feature automatic="undefined" manual="undefined" name="RandomColumn"/>
+		<feature automatic="undefined" manual="undefined" name="Clever"/>
+	</configuration>

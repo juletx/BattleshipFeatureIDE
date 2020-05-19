@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+	<featureModel>
+		<properties/>
+		<struct>
+			<and abstract="true" mandatory="true" name="battle_SPL">
+				<feature mandatory="true" name="About"/>
+				<alt mandatory="true" name="Difficulty">
+					<feature name="Beginner"/>
+					<feature name="Intermediate"/>
+					<feature name="Expert"/>
+				</alt>
+				<feature name="Statistics"/>
+				<feature name="Challenge"/>
+				<feature name="PlayerNames"/>
+				<and name="Computer">
+					<and mandatory="true" name="Strategy">
+						<alt mandatory="true" name="Row">
+							<feature name="TopDown"/>
+							<feature name="BottomUp"/>
+							<feature name="RandomRow"/>
+						</alt>
+						<alt mandatory="true" name="Column">
+							<feature name="LeftRight"/>
+							<feature name="RightLeft"/>
+							<feature name="RandomColumn"/>
+						</alt>
+						<feature name="Clever"/>
+					</and>
+				</and>
+			</and>
+		</struct>
+		<constraints/>
+		<calculations Auto="true" Constraints="true" Features="true" Redundant="true" Tautology="true"/>
+		<comments/>
+		<featureOrder userDefined="false"/>
+	</featureModel>

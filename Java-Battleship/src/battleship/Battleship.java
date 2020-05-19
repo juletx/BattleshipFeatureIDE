@@ -1,3 +1,4 @@
+package battleship;
 import java.util.Scanner;
 
 public class Battleship {

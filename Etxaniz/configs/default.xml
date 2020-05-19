@@ -6,18 +6,18 @@
 		<feature automatic="unselected" manual="undefined" name="Beginner"/>
 		<feature automatic="undefined" manual="selected" name="Intermediate"/>
 		<feature automatic="unselected" manual="undefined" name="Expert"/>
-		<feature automatic="undefined" manual="undefined" name="Statistics"/>
-		<feature automatic="undefined" manual="undefined" name="Challenge"/>
-		<feature automatic="undefined" manual="undefined" name="PlayerNames"/>
-		<feature automatic="undefined" manual="undefined" name="Computer"/>
-		<feature automatic="undefined" manual="undefined" name="Strategy"/>
-		<feature automatic="undefined" manual="undefined" name="Row"/>
-		<feature automatic="undefined" manual="undefined" name="TopDown"/>
-		<feature automatic="undefined" manual="undefined" name="BottomUp"/>
-		<feature automatic="undefined" manual="undefined" name="RandomRow"/>
-		<feature automatic="undefined" manual="undefined" name="Column"/>
-		<feature automatic="undefined" manual="undefined" name="LeftRight"/>
-		<feature automatic="undefined" manual="undefined" name="RightLeft"/>
-		<feature automatic="undefined" manual="undefined" name="RandomColumn"/>
-		<feature automatic="undefined" manual="undefined" name="Clever"/>
+		<feature automatic="undefined" manual="selected" name="Statistics"/>
+		<feature automatic="undefined" manual="selected" name="Challenge"/>
+		<feature automatic="undefined" manual="selected" name="PlayerNames"/>
+		<feature automatic="selected" manual="selected" name="Computer"/>
+		<feature automatic="selected" manual="undefined" name="Strategy"/>
+		<feature automatic="selected" manual="undefined" name="Row"/>
+		<feature automatic="undefined" manual="selected" name="TopDown"/>
+		<feature automatic="unselected" manual="undefined" name="BottomUp"/>
+		<feature automatic="unselected" manual="undefined" name="RandomRow"/>
+		<feature automatic="selected" manual="undefined" name="Column"/>
+		<feature automatic="unselected" manual="undefined" name="LeftRight"/>
+		<feature automatic="unselected" manual="undefined" name="RightLeft"/>
+		<feature automatic="undefined" manual="selected" name="RandomColumn"/>
+		<feature automatic="undefined" manual="selected" name="Clever"/>
 	</configuration>

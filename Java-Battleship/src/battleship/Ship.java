@@ -1,4 +1,5 @@
 package battleship;
+
 public class Ship {
 	/* Instance Variables */
 	private int row;

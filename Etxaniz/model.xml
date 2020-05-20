@@ -2,7 +2,7 @@
 	<featureModel>
 		<properties/>
 		<struct>
-			<and abstract="true" mandatory="true" name="battle_SPL">
+			<and abstract="true" mandatory="true" name="Battleship">
 				<feature mandatory="true" name="About"/>
 				<alt mandatory="true" name="Difficulty">
 					<feature name="Beginner"/>

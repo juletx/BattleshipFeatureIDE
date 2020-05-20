@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-	<configuration>
-		<feature automatic="selected" manual="undefined" name="battle_SPL"/>
-		<feature automatic="selected" manual="undefined" name="About"/>
-		<feature automatic="selected" manual="undefined" name="Difficulty"/>
-		<feature automatic="unselected" manual="undefined" name="Beginner"/>
-		<feature automatic="undefined" manual="selected" name="Intermediate"/>
-		<feature automatic="unselected" manual="undefined" name="Expert"/>
-		<feature automatic="undefined" manual="selected" name="Statistics"/>
-		<feature automatic="undefined" manual="selected" name="Challenge"/>
-		<feature automatic="undefined" manual="selected" name="PlayerNames"/>
-		<feature automatic="selected" manual="selected" name="Computer"/>
-		<feature automatic="selected" manual="undefined" name="Strategy"/>
-		<feature automatic="selected" manual="undefined" name="Row"/>
-		<feature automatic="undefined" manual="selected" name="TopDown"/>
-		<feature automatic="unselected" manual="undefined" name="BottomUp"/>
-		<feature automatic="unselected" manual="undefined" name="RandomRow"/>
-		<feature automatic="selected" manual="undefined" name="Column"/>
-		<feature automatic="unselected" manual="undefined" name="LeftRight"/>
-		<feature automatic="unselected" manual="undefined" name="RightLeft"/>
-		<feature automatic="undefined" manual="selected" name="RandomColumn"/>
-		<feature automatic="undefined" manual="selected" name="Clever"/>
-	</configuration>
+<configuration>
+	<feature automatic="selected" name="Battleship"/>
+	<feature automatic="selected" name="About"/>
+	<feature automatic="selected" name="Difficulty"/>
+	<feature automatic="unselected" name="Beginner"/>
+	<feature manual="selected" name="Intermediate"/>
+	<feature automatic="unselected" name="Expert"/>
+	<feature manual="selected" name="Statistics"/>
+	<feature manual="selected" name="Challenge"/>
+	<feature manual="selected" name="PlayerNames"/>
+	<feature automatic="selected" manual="selected" name="Computer"/>
+	<feature automatic="selected" name="Strategy"/>
+	<feature automatic="selected" name="Row"/>
+	<feature manual="selected" name="TopDown"/>
+	<feature automatic="unselected" name="BottomUp"/>
+	<feature automatic="unselected" name="RandomRow"/>
+	<feature automatic="selected" name="Column"/>
+	<feature manual="selected" name="LeftRight"/>
+	<feature automatic="unselected" name="RightLeft"/>
+	<feature automatic="unselected" name="RandomColumn"/>
+	<feature manual="selected" name="Clever"/>
+</configuration>

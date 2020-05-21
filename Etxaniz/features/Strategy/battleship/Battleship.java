@@ -31,4 +31,12 @@ public class Battleship {
 		System.out.println("PRESS ENTER TO CONTINUE...");
 		reader.nextLine();
 	}
+	
+	private static int convertCompColToRegular(int val) {
+		if (val < 0 || val >= Grid.NUM_COLS) {
+			return -1;
+		} else {
+			return val + 1;
+		}
+	}
 }

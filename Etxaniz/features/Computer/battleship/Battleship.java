@@ -54,7 +54,7 @@ public class Battleship {
 		if (dir == 0) {
 			int checker = length + col;
 			// System.out.println("DEBUG: checker is " + checker);
-			if (checker > 10) {
+			if (checker > Grid.NUM_COLS) {
 				return true;
 			}
 		}
@@ -64,7 +64,7 @@ public class Battleship {
 		{
 			int checker = length + row;
 			// System.out.println("DEBUG: checker is " + checker);
-			if (checker > 10) {
+			if (checker > Grid.NUM_ROWS) {
 				return true;
 			}
 		}

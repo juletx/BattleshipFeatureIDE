@@ -1,6 +1,7 @@
 package battleship;
 
 import java.util.Scanner;
+import java.util.InputMismatchException;
 
 public class Battleship {
 	public static Scanner reader = new Scanner(System.in);
@@ -12,7 +13,7 @@ public class Battleship {
 		System.out.println("\nPlayer SETUP:");
 		Player userPlayer = new Player();
 		setup(userPlayer);
-		
+
 		System.out.println("Computer SETUP...DONE...PRESS ENTER TO CONTINUE...");
 		reader.nextLine();
 		reader.nextLine();
@@ -41,47 +42,6 @@ public class Battleship {
 		}
 	}
 
-	private static String askForGuess(Player p, Player opp) {
-		System.out.println("Viewing My Guesses:");
-		p.oppGrid.printStatus();
-
-		int row = -1;
-		int col = -1;
-
-		String oldRow = "Z";
-		int oldCol = -1;
-
-		while (true) {
-			System.out.print("Type in row (A-J): ");
-			String userInputRow = reader.next();
-			userInputRow = userInputRow.toUpperCase();
-			oldRow = userInputRow;
-			row = convertLetterToInt(userInputRow);
-
-			System.out.print("Type in column (1-10): ");
-			col = reader.nextInt();
-			oldCol = col;
-			col = convertUserColToProCol(col);
-
-			// System.out.println("DEBUG: " + row + col);
-
-			if (col >= 0 && col <= 9 && row != -1)
-				break;
-
-			System.out.println("Invalid location!");
-		}
-
-		if (opp.playerGrid.hasShip(row, col)) {
-			p.oppGrid.markHit(row, col);
-			opp.playerGrid.markHit(row, col);
-			return "** USER HIT AT " + oldRow + oldCol + " **";
-		} else {
-			p.oppGrid.markMiss(row, col);
-			opp.playerGrid.markMiss(row, col);
-			return "** USER MISS AT " + oldRow + oldCol + " **";
-		}
-	}
-
 	private static void setup(Player p) {
 		p.playerGrid.printShips();
 		System.out.println();
@@ -94,21 +54,28 @@ public class Battleship {
 				int col = -1;
 				int dir = -1;
 				while (true) {
-					System.out.print("Type in row (A-J): ");
+					System.out.print("Type in row (A-" + convertIntToLetter(Grid.NUM_ROWS - 1) + "): ");
 					String userInputRow = reader.next();
 					userInputRow = userInputRow.toUpperCase();
 					row = convertLetterToInt(userInputRow);
 
-					System.out.print("Type in column (1-10): ");
-					col = reader.nextInt();
-					col = convertUserColToProCol(col);
-
-					System.out.print("Type in direction (0-H, 1-V): ");
-					dir = reader.nextInt();
+					try {
+						System.out.print("Type in column (1-" + Grid.NUM_COLS + "): ");
+						col = reader.nextInt();
+						col = convertUserColToProCol(col);
+					} catch (InputMismatchException e) {
+						col = -1;
+					}
+					try {
+						System.out.print("Type in direction (0-H, 1-V): ");
+						dir = reader.nextInt();
+					} catch (InputMismatchException e) {
+						dir = -1;
+					}
 
 					// System.out.println("DEBUG: " + row + col + dir);
 
-					if (col >= 0 && col <= 9 && row != -1 && dir != -1) // Check valid input
+					if (col >= 0 && col <= Grid.NUM_COLS - 1 && row != -1 && dir != -1) // Check valid input
 					{
 						if (!hasErrors(row, col, dir, p, normCounter)) // Check if errors will produce (out of bounds)
 						{
@@ -142,7 +109,7 @@ public class Battleship {
 		if (dir == 0) {
 			int checker = length + col;
 			// System.out.println("DEBUG: checker is " + checker);
-			if (checker > 10) {
+			if (checker > Grid.NUM_COLS) {
 				System.out.println("SHIP DOES NOT FIT");
 				return true;
 			}
@@ -153,7 +120,7 @@ public class Battleship {
 		{
 			int checker = length + row;
 			// System.out.println("DEBUG: checker is " + checker);
-			if (checker > 10) {
+			if (checker > Grid.NUM_ROWS) {
 				System.out.println("SHIP DOES NOT FIT");
 				return true;
 			}
@@ -185,168 +152,77 @@ public class Battleship {
 		return false;
 	}
 
-	/* HELPER METHODS */
-	private static int convertLetterToInt(String val) {
-		int toReturn = -1;
-		switch (val) {
-		case "A":
-			toReturn = 0;
-			break;
-		case "B":
-			toReturn = 1;
-			break;
-		case "C":
-			toReturn = 2;
-			break;
-		case "D":
-			toReturn = 3;
-			break;
-		case "E":
-			toReturn = 4;
-			break;
-		case "F":
-			toReturn = 5;
-			break;
-		case "G":
-			toReturn = 6;
-			break;
-		case "H":
-			toReturn = 7;
-			break;
-		case "I":
-			toReturn = 8;
-			break;
-		case "J":
-			toReturn = 9;
-			break;
-		default:
-			toReturn = -1;
-			break;
+	private static String askForGuess(Player p, Player opp) {
+		System.out.println("Viewing My Guesses:");
+		p.oppGrid.printStatus();
+
+		int row = -1;
+		int col = -1;
+
+		String oldRow = "Z";
+		int oldCol = -1;
+
+		while (true) {
+			System.out.print("Type in row (A-" + convertIntToLetter(Grid.NUM_ROWS - 1) + "): ");
+			String userInputRow = reader.next();
+			userInputRow = userInputRow.toUpperCase();
+			oldRow = userInputRow;
+			row = convertLetterToInt(userInputRow);
+
+			try {
+				System.out.print("Type in column (1-" + Grid.NUM_COLS + "): ");
+				col = reader.nextInt();
+				oldCol = col;
+				col = convertUserColToProCol(col);
+			} catch (InputMismatchException e) {
+				col = -1;
+			}
+
+			// System.out.println("DEBUG: " + row + col);
+
+			if (col >= 0 && col <= Grid.NUM_COLS - 1 && row != -1)
+				break;
+
+			System.out.println("Invalid location!");
 		}
 
-		return toReturn;
+		if (opp.playerGrid.hasShip(row, col)) {
+			p.oppGrid.markHit(row, col);
+			opp.playerGrid.markHit(row, col);
+			return "** USER HIT AT " + oldRow + oldCol + " **";
+		} else {
+			p.oppGrid.markMiss(row, col);
+			opp.playerGrid.markMiss(row, col);
+			return "** USER MISS AT " + oldRow + oldCol + " **";
+		}
+	}
+
+	/* HELPER METHODS */
+	private static int convertLetterToInt(String val) {
+		char letter = val.charAt(0);
+		int value = (int) letter - 65;
+		if (value < 0 || value >= Grid.NUM_ROWS) {
+			return -1;
+		} else {
+			return value;
+		}
 	}
 
 	private static String convertIntToLetter(int val) {
-		String toReturn = "Z";
-		switch (val) {
-		case 0:
-			toReturn = "A";
-			break;
-		case 1:
-			toReturn = "B";
-			break;
-		case 2:
-			toReturn = "C";
-			break;
-		case 3:
-			toReturn = "D";
-			break;
-		case 4:
-			toReturn = "E";
-			break;
-		case 5:
-			toReturn = "F";
-			break;
-		case 6:
-			toReturn = "G";
-			break;
-		case 7:
-			toReturn = "H";
-			break;
-		case 8:
-			toReturn = "I";
-			break;
-		case 9:
-			toReturn = "J";
-			break;
-		default:
-			toReturn = "Z";
-			break;
+		if (val < 0 || val >= Grid.NUM_ROWS) {
+			return "Z";
+		} else {
+			int value = val + 65;
+			String letter = (char) value + "";
+			return letter;
 		}
-
-		return toReturn;
 	}
 
 	private static int convertUserColToProCol(int val) {
-		int toReturn = -1;
-		switch (val) {
-		case 1:
-			toReturn = 0;
-			break;
-		case 2:
-			toReturn = 1;
-			break;
-		case 3:
-			toReturn = 2;
-			break;
-		case 4:
-			toReturn = 3;
-			break;
-		case 5:
-			toReturn = 4;
-			break;
-		case 6:
-			toReturn = 5;
-			break;
-		case 7:
-			toReturn = 6;
-			break;
-		case 8:
-			toReturn = 7;
-			break;
-		case 9:
-			toReturn = 8;
-			break;
-		case 10:
-			toReturn = 9;
-			break;
-		default:
-			toReturn = -1;
-			break;
+		if (val < 1 || val > Grid.NUM_COLS) {
+			return -1;
+		} else {
+			return val - 1;
 		}
-
-		return toReturn;
-	}
-
-	private static int convertCompColToRegular(int val) {
-		int toReturn = -1;
-		switch (val) {
-		case 0:
-			toReturn = 1;
-			break;
-		case 1:
-			toReturn = 2;
-			break;
-		case 2:
-			toReturn = 3;
-			break;
-		case 3:
-			toReturn = 4;
-			break;
-		case 4:
-			toReturn = 5;
-			break;
-		case 5:
-			toReturn = 6;
-			break;
-		case 6:
-			toReturn = 7;
-			break;
-		case 7:
-			toReturn = 8;
-			break;
-		case 8:
-			toReturn = 9;
-			break;
-		case 9:
-			toReturn = 10;
-			break;
-		default:
-			toReturn = -1;
-			break;
-		}
-
-		return toReturn;
 	}
 }

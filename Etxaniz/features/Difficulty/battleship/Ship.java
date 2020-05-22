@@ -6,6 +6,9 @@ public class Ship {
 	private int col;
 	private int length;
 	private int direction;
+	private int number;
+	private ShipType type;
+	private int hits;
 
 	// Direction Constants
 	public static final int UNSET = -1;
@@ -13,11 +16,13 @@ public class Ship {
 	public static final int VERTICAL = 1;
 
 	// Constructor
-	public Ship(int length) {
+	public Ship(int length, int number) {
 		this.length = length;
 		this.row = -1;
 		this.col = -1;
 		this.direction = UNSET;
+		this.number = number;
+		this.hits = 0;
 	}
 
 	// Has the location been init
@@ -67,6 +72,36 @@ public class Ship {
 	// Getter for the direction
 	public int getDirection() {
 		return direction;
+	}
+
+	// Getter for the number
+	public int getNumber() {
+		return number;
+	}
+
+	// Getter for the type
+	public ShipType getType() {
+		return type;
+	}
+	
+	// Increments hits
+	public void addHit() {
+		hits++;
+	}
+
+	// Check if ship is hit
+	public boolean isHit() {
+		return hits > 0 && hits < length;
+	}
+
+	// Check if ship is sunk
+	public boolean isSunk() {
+		return hits == length;
+	}
+
+	// Check if ship is sunk
+	public boolean isLocate() {
+		return hits == 0;
 	}
 
 	// Helper method to get a string value from the direction

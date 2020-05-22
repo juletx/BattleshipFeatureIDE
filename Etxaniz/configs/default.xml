@@ -3,9 +3,9 @@
 	<feature automatic="selected" name="Battleship"/>
 	<feature automatic="selected" name="About"/>
 	<feature automatic="selected" name="Difficulty"/>
-	<feature automatic="unselected" name="Beginner"/>
+	<feature manual="selected" name="Beginner"/>
 	<feature automatic="unselected" name="Intermediate"/>
-	<feature manual="selected" name="Expert"/>
+	<feature automatic="unselected" name="Expert"/>
 	<feature manual="selected" name="Statistics"/>
 	<feature manual="selected" name="Challenge"/>
 	<feature manual="selected" name="PlayerNames"/>

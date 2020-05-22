@@ -8,7 +8,7 @@ public class Player {
 	public Player() {
 		ships = new Ship[NUM_OF_SHIPS];
 		for (int i = 0; i < NUM_OF_SHIPS; i++) {
-			Ship tempShip = new Ship(SHIP_LENGTHS[i]);
+			Ship tempShip = new Ship(SHIP_LENGTHS[i], i + 1);
 			ships[i] = tempShip;
 		}
 

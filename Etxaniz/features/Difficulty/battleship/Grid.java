@@ -2,7 +2,6 @@ package battleship;
 
 public class Grid {
 	private Location[][] grid;
-	private int points;
 
 	public Grid() {
 		grid = new Location[NUM_ROWS][NUM_COLS];
@@ -19,7 +18,6 @@ public class Grid {
 	// on the Location object.
 	public void markHit(int row, int col) {
 		grid[row][col].markHit();
-		points++;
 	}
 
 	// Mark a miss on this location.
@@ -80,10 +78,6 @@ public class Grid {
 	}
 
 	public boolean hasLost() {
-		// if (points >= 17)
-		// return true;
-		// else
-		// return false;
 		for (int row = 0; row < grid.length; row++) {
 			for (int col = 0; col < grid[row].length; col++) {
 				if (grid[row][col].hasShip() && !grid[row][col].checkHit()) {

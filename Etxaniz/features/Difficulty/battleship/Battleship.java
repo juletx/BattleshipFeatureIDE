@@ -25,6 +25,7 @@ public class Battleship {
 		String result = "";
 		while (true) {
 			System.out.println(result);
+			userPlayer.playerGrid.printStatistics();
 			System.out.println("\nUSER MAKE GUESS:");
 			result = askForGuess(userPlayer, computer);
 
@@ -45,11 +46,10 @@ public class Battleship {
 	private static void setup(Player p) {
 		p.playerGrid.printShips();
 		System.out.println();
-		int counter = 1;
-		int normCounter = 0;
+		int counter = 0;
 		while (p.numOfShipsLeft() > 0) {
 			for (Ship s : p.ships) {
-				System.out.println("\nShip #" + counter + ": Length-" + s.getLength());
+				System.out.println("\nShip #" + s.getNumber() + ": " + s.getType() + " (Length=" + s.getLength() + ")");
 				int row = -1;
 				int col = -1;
 				int dir = -1;
@@ -63,13 +63,11 @@ public class Battleship {
 						System.out.print("Type in column (1-" + Grid.NUM_COLS + "): ");
 						col = reader.nextInt();
 						col = convertUserColToProCol(col);
-					} catch (InputMismatchException e) {
-						col = -1;
-					}
-					try {
+						
 						System.out.print("Type in direction (0-H, 1-V): ");
 						dir = reader.nextInt();
 					} catch (InputMismatchException e) {
+						col = -1;
 						dir = -1;
 					}
 
@@ -77,7 +75,7 @@ public class Battleship {
 
 					if (col >= 0 && col <= Grid.NUM_COLS - 1 && row != -1 && dir != -1) // Check valid input
 					{
-						if (!hasErrors(row, col, dir, p, normCounter)) // Check if errors will produce (out of bounds)
+						if (!hasErrors(row, col, dir, p, counter)) // Check if errors will produce (out of bounds)
 						{
 							break;
 						}
@@ -87,14 +85,13 @@ public class Battleship {
 				}
 
 				// System.out.println("FURTHER DEBUG: row = " + row + "; col = " + col);
-				p.ships[normCounter].setLocation(row, col);
-				p.ships[normCounter].setDirection(dir);
-				p.playerGrid.addShip(p.ships[normCounter]);
+				p.ships[counter].setLocation(row, col);
+				p.ships[counter].setDirection(dir);
+				p.playerGrid.addShip(p.ships[counter]);
 				p.playerGrid.printShips();
 				System.out.println();
 				System.out.println("You have " + p.numOfShipsLeft() + " remaining ships to place.");
 
-				normCounter++;
 				counter++;
 			}
 		}

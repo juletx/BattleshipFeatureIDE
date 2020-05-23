@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<configuration>
+	<feature automatic="selected" name="Battleship"/>
+	<feature automatic="selected" name="About"/>
+	<feature automatic="selected" name="Difficulty"/>
+	<feature manual="selected" name="Beginner"/>
+	<feature automatic="unselected" name="Intermediate"/>
+	<feature automatic="unselected" name="Expert"/>
+	<feature manual="selected" name="Statistics"/>
+	<feature name="Challenge"/>
+	<feature name="PlayerNames"/>
+	<feature name="Computer"/>
+	<feature name="Strategy"/>
+	<feature name="Row"/>
+	<feature name="TopDown"/>
+	<feature name="BottomUp"/>
+	<feature name="RandomRow"/>
+	<feature name="Column"/>
+	<feature name="LeftRight"/>
+	<feature name="RightLeft"/>
+	<feature name="RandomColumn"/>
+	<feature name="Clever"/>
+</configuration>

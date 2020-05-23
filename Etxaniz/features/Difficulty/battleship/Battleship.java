@@ -14,20 +14,19 @@ public class Battleship {
 		Player userPlayer = new Player();
 		setup(userPlayer);
 
-		System.out.println("Computer SETUP...DONE...PRESS ENTER TO CONTINUE...");
-		reader.nextLine();
+		System.out.println("\nComputer SETUP...DONE...PRESS ENTER TO CONTINUE...");
 		reader.nextLine();
 		Player computer = new Player();
 		setupComputer(computer);
-		System.out.println("\nCOMPUTER GRID (FOR DEBUG)...");
+		System.out.println("COMPUTER GRID (FOR DEBUG)...");
 		computer.playerGrid.printShips();
 
 		String result = "";
 		while (true) {
-			System.out.println(result);
-			computer.printStatistics();
 			System.out.println("\nUSER MAKE GUESS:");
 			result = askForGuess(userPlayer, computer);
+			System.out.println(result);
+			computer.printStatistics();
 
 			if (userPlayer.playerGrid.hasLost()) {
 				System.out.println("COMP HIT!...USER LOSES");
@@ -63,7 +62,7 @@ public class Battleship {
 						System.out.print("Type in column (1-" + Grid.NUM_COLS + "): ");
 						col = reader.nextInt();
 						col = convertUserColToProCol(col);
-						
+
 						System.out.print("Type in direction (0-H, 1-V): ");
 						dir = reader.nextInt();
 					} catch (InputMismatchException e) {
@@ -75,7 +74,7 @@ public class Battleship {
 
 					if (col >= 0 && col <= Grid.NUM_COLS - 1 && row != -1 && dir != -1) // Check valid input
 					{
-						if (!hasErrors(row, col, dir, p, counter)) // Check if errors will produce (out of bounds)
+						if (!hasErrors(row, col, dir, p, counter)) // Check if errors will produce
 						{
 							break;
 						}
@@ -146,6 +145,37 @@ public class Battleship {
 			}
 		}
 
+		// Check if touching with another ship
+		if (dir == 0) // Hortizontal
+		{
+			// For each location a ship occupies, check if another ship is touching
+			for (int i = col; i < col + length; i++) {
+				// System.out.println("DEBUG: row = " + row + "; col = " + i);
+				for (int j = i - 1; j <= i + 1; j++) {
+					for (int k = row - 1; k <= row + 1; k++) {
+						if (k >= 0 && k < Grid.NUM_ROWS && j >= 0 && j < Grid.NUM_COLS && p.playerGrid.hasShip(k, j)) {
+							System.out.println("THERE IS A TOUCHING SHIP");
+							return true;
+						}
+					}
+				}
+			}
+		} else if (dir == 1) // Vertical
+		{
+			// For each location a ship occupies, check if another ship is touching
+			for (int i = row; i < row + length; i++) {
+				// System.out.println("DEBUG: row = " + row + "; col = " + i);
+				for (int j = i - 1; j <= i + 1; j++) {
+					for (int k = col - 1; k <= col + 1; k++) {
+						if (j >= 0 && j < Grid.NUM_ROWS && k >= 0 && k < Grid.NUM_COLS && p.playerGrid.hasShip(j, k)) {
+							System.out.println("THERE IS A TOUCHING SHIP");
+							return true;
+						}
+					}
+				}
+			}
+		}
+
 		return false;
 	}
 
@@ -195,14 +225,14 @@ public class Battleship {
 			Ship s = opp.ships[number - 1];
 			s.addHit();
 			if (s.isHit()) {
-				return "** USER HIT AT " + oldRow + oldCol + " **";
+				return "\n** USER HIT AT " + oldRow + oldCol + " **";
 			} else {
-				return "** USER HIT AND SUNK " + s.getType() + " AT " + oldRow + oldCol + " **";
+				return "\n** USER HIT AND SUNK " + s.getType() + " AT " + oldRow + oldCol + " **";
 			}
 		} else {
 			p.oppGrid.markMiss(row, col);
 			opp.playerGrid.markMiss(row, col);
-			return "** USER MISS AT " + oldRow + oldCol + " **";
+			return "\n** USER MISS AT " + oldRow + oldCol + " **";
 		}
 	}
 

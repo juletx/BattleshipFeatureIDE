@@ -11,7 +11,7 @@ public class Battleship {
 		System.out.println("\nCOMPUTER GRID (FOR DEBUG)...");
 		computer.playerGrid.printShips();
 	}
-	
+
 	private static void setupComputer(Player p) {
 		System.out.println();
 		int counter = 1;
@@ -44,7 +44,7 @@ public class Battleship {
 			}
 		}
 	}
-	
+
 	private static boolean hasErrorsComp(int row, int col, int dir, Player p, int count) {
 		// System.out.println("DEBUG: count arg is " + count);
 
@@ -69,23 +69,31 @@ public class Battleship {
 			}
 		}
 
-		// Check if overlapping with another ship
+		// Check if touching with another ship
 		if (dir == 0) // Hortizontal
 		{
-			// For each location a ship occupies, check if ship is already there
+			// For each location a ship occupies, check if another ship is touching
 			for (int i = col; i < col + length; i++) {
 				// System.out.println("DEBUG: row = " + row + "; col = " + i);
-				if (p.playerGrid.hasShip(row, i)) {
-					return true;
+				for (int j = i - 1; j <= i + 1; j++) {
+					for (int k = row - 1; k <= row + 1; k++) {
+						if (k >= 0 && k < Grid.NUM_ROWS && j >= 0 && j < Grid.NUM_COLS && p.playerGrid.hasShip(k, j)) {
+							return true;
+						}
+					}
 				}
 			}
 		} else if (dir == 1) // Vertical
 		{
-			// For each location a ship occupies, check if ship is already there
+			// For each location a ship occupies, check if another ship is touching
 			for (int i = row; i < row + length; i++) {
 				// System.out.println("DEBUG: row = " + row + "; col = " + i);
-				if (p.playerGrid.hasShip(i, col)) {
-					return true;
+				for (int j = i - 1; j <= i + 1; j++) {
+					for (int k = col - 1; k <= col + 1; k++) {
+						if (j >= 0 && j < Grid.NUM_ROWS && k >= 0 && k < Grid.NUM_COLS && p.playerGrid.hasShip(j, k)) {
+							return true;
+						}
+					}
 				}
 			}
 		}

@@ -25,7 +25,7 @@ public class Battleship {
 		String result = "";
 		while (true) {
 			System.out.println(result);
-			userPlayer.playerGrid.printStatistics();
+			computer.printStatistics();
 			System.out.println("\nUSER MAKE GUESS:");
 			result = askForGuess(userPlayer, computer);
 
@@ -177,16 +177,28 @@ public class Battleship {
 
 			// System.out.println("DEBUG: " + row + col);
 
-			if (col >= 0 && col <= Grid.NUM_COLS - 1 && row != -1)
-				break;
-
-			System.out.println("Invalid location!");
+			if (col >= 0 && col <= Grid.NUM_COLS - 1 && row != -1) {
+				if (!p.oppGrid.alreadyGuessed(row, col)) {
+					break;
+				} else {
+					System.out.println("Location already guessed!");
+				}
+			} else {
+				System.out.println("Invalid location!");
+			}
 		}
 
 		if (opp.playerGrid.hasShip(row, col)) {
 			p.oppGrid.markHit(row, col);
 			opp.playerGrid.markHit(row, col);
-			return "** USER HIT AT " + oldRow + oldCol + " **";
+			int number = opp.playerGrid.getNumber(row, col);
+			Ship s = opp.ships[number - 1];
+			s.addHit();
+			if (s.isHit()) {
+				return "** USER HIT AT " + oldRow + oldCol + " **";
+			} else {
+				return "** USER HIT AND SUNK " + s.getType() + " AT " + oldRow + oldCol + " **";
+			}
 		} else {
 			p.oppGrid.markMiss(row, col);
 			opp.playerGrid.markMiss(row, col);

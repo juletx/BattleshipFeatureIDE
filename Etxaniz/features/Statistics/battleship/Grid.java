@@ -20,11 +20,15 @@ public class Grid {
 		misses++;
 	}
 	
-	public void printStatistics() {
-		System.out.println("STATISTICS:");
-		System.out.println("You have made " + shots + " shots, " + hits + " hits and " + misses + " misses.");
-		System.out.println("You have hit.");
-		System.out.println("You have sunk.");
-		System.out.println("You have to locate.");
+	public int getShots() {
+		return shots;
+	}
+	
+	public int getHits() {
+		return hits;
+	}
+	
+	public int getMisses() {
+		return misses;
 	}
 }

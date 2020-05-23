@@ -49,6 +49,14 @@ public class Grid {
 	public boolean hasShip(int row, int col) {
 		return grid[row][col].hasShip();
 	}
+	
+	public int getNumber(int row, int col) {
+		return grid[row][col].getNumberOfShip();
+	}
+
+	public void setNumber(int row, int col, int val) {
+		grid[row][col].setNumberOfShip(val);
+	}
 
 	// Get the Location object at this row and column position
 	public Location get(int row, int col) {
@@ -93,6 +101,7 @@ public class Grid {
 		int col = s.getCol();
 		int length = s.getLength();
 		int dir = s.getDirection();
+		int number = s.getNumber();
 
 		if (!(s.isDirectionSet()) || !(s.isLocationSet()))
 			throw new IllegalArgumentException("ERROR! Direction or Location is unset/default");
@@ -105,6 +114,7 @@ public class Grid {
 				grid[row][i].setShip(true);
 				grid[row][i].setLengthOfShip(length);
 				grid[row][i].setDirectionOfShip(dir);
+				grid[row][i].setNumberOfShip(number);
 			}
 		} else if (dir == 1) // Vertical
 		{
@@ -113,6 +123,7 @@ public class Grid {
 				grid[i][col].setShip(true);
 				grid[i][col].setLengthOfShip(length);
 				grid[i][col].setDirectionOfShip(dir);
+				grid[i][col].setNumberOfShip(number);
 			}
 		}
 	}

@@ -11,6 +11,7 @@ public class Location {
 	private int status;
 	private int lengthOfShip;
 	private int directionOfShip;
+	private int numberOfShip;
 
 	// Location constructor.
 	public Location() {
@@ -19,6 +20,7 @@ public class Location {
 		hasShip = false;
 		lengthOfShip = -1;
 		directionOfShip = -1;
+		numberOfShip = -1;
 	}
 
 	// Was this Location a hit?
@@ -89,5 +91,13 @@ public class Location {
 
 	public void setDirectionOfShip(int val) {
 		directionOfShip = val;
+	}
+	
+	public int getNumberOfShip() {
+		return numberOfShip;
+	}
+
+	public void setNumberOfShip(int val) {
+		numberOfShip = val;
 	}
 }

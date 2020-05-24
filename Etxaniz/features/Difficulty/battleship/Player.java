@@ -37,4 +37,13 @@ public class Player {
 		s.setDirection(direction);
 		playerGrid.addShip(s);
 	}
+	
+	public boolean hasLost() {
+		for (Ship s : ships) {
+			if (!s.isSunk()) {
+				return false;
+			}
+		}
+		return true;
+	}
 }

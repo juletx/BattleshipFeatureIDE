@@ -5,6 +5,11 @@ public class Battleship {
 		original(args);
 	}
 	
+	private static void playGamePlayer2(Player player1, Player player2) {
+		System.out.println("\nComputer IS MAKING GUESS...");
+		compMakeGuess(player2, player1);
+	}
+	
 	private static void compMakeGuess(Player comp, Player user) {
 		int row = calculateRow();
 		int col = calculateCol();
@@ -16,16 +21,7 @@ public class Battleship {
 		}
 
 		if (user.playerGrid.hasShip(row, col)) {
-			comp.oppGrid.markHit(row, col);
-			user.playerGrid.markHit(row, col);
-			int number = user.playerGrid.getNumber(row, col);
-			Ship s = user.ships[number - 1];
-			s.addHit();
-			if (s.isHit()) {
-				System.out.println("COMP HIT AT " + convertIntToLetter(row) + convertCompColToRegular(col));
-			} else {
-				System.out.println("COMP HIT AND SUNK " + s.getType() + " AT " + convertIntToLetter(row) + convertCompColToRegular(col));
-			}
+			markHit(comp, user, row, col, convertIntToLetter(row), convertCompColToRegular(col));
 		} else {
 			comp.oppGrid.markMiss(row, col);
 			user.playerGrid.markMiss(row, col);

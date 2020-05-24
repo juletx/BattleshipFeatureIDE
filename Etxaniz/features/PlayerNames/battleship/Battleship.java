@@ -16,4 +16,9 @@ public class Battleship {
 		p.setName(name);
 		original(p);
 	}
+	
+//	private static void setupComputer(Player p) {
+//		p.setName("Computer");
+//		original(p);
+//	}
 }

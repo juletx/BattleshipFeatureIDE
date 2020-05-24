@@ -49,7 +49,7 @@ public class Grid {
 	public boolean hasShip(int row, int col) {
 		return grid[row][col].hasShip();
 	}
-	
+
 	public int getNumber(int row, int col) {
 		return grid[row][col].getNumberOfShip();
 	}
@@ -83,17 +83,6 @@ public class Grid {
 
 	public void printCombined() {
 		generalPrintMethod(2);
-	}
-
-	public boolean hasLost() {
-		for (int row = 0; row < grid.length; row++) {
-			for (int col = 0; col < grid[row].length; col++) {
-				if (grid[row][col].hasShip() && !grid[row][col].checkHit()) {
-					return false;
-				}
-			}
-		}
-		return true;
 	}
 
 	public void addShip(Ship s) {
@@ -139,19 +128,18 @@ public class Grid {
 		System.out.println();
 
 		// Print rows
-		int endLetterForLoop = (NUM_ROWS - 1) + 65;
-		for (int i = 65; i <= endLetterForLoop; i++) {
-			char theChar = (char) i;
+		for (int i = 0; i < NUM_ROWS; i++) {
+			char theChar = convertIntToLetter(i);
 			System.out.print(theChar + " ");
 
 			for (int j = 0; j < NUM_COLS; j++) {
 				// type == 0; status
 				if (type == 0) {
-					if (grid[switchCounterToIntegerForArray(i)][j].isUnguessed()) {
+					if (grid[i][j].isUnguessed()) {
 						System.out.print("- ");
-					} else if (grid[switchCounterToIntegerForArray(i)][j].checkMiss()) {
+					} else if (grid[i][j].checkMiss()) {
 						System.out.print("O ");
-					} else if (grid[switchCounterToIntegerForArray(i)][j].checkHit()) {
+					} else if (grid[i][j].checkHit()) {
 						System.out.print("X ");
 					}
 					if (j >= 9) {
@@ -159,24 +147,24 @@ public class Grid {
 					}
 					// type == 1; ships
 				} else if (type == 1) {
-					if (grid[switchCounterToIntegerForArray(i)][j].hasShip()) {
+					if (grid[i][j].hasShip()) {
 						// System.out.print("X ");
-						if (grid[switchCounterToIntegerForArray(i)][j].getLengthOfShip() == 2) {
+						if (grid[i][j].getLengthOfShip() == 2) {
 							System.out.print("A ");
-						} else if (grid[switchCounterToIntegerForArray(i)][j].getLengthOfShip() == 3) {
+						} else if (grid[i][j].getLengthOfShip() == 3) {
 							System.out.print("B ");
-						} else if (grid[switchCounterToIntegerForArray(i)][j].getLengthOfShip() == 4) {
+						} else if (grid[i][j].getLengthOfShip() == 4) {
 							System.out.print("C ");
-						} else if (grid[switchCounterToIntegerForArray(i)][j].getLengthOfShip() == 5) {
+						} else if (grid[i][j].getLengthOfShip() == 5) {
 							System.out.print("D ");
-						} else if (grid[switchCounterToIntegerForArray(i)][j].getLengthOfShip() == 6) {
+						} else if (grid[i][j].getLengthOfShip() == 6) {
 							System.out.print("E ");
-						} else if (grid[switchCounterToIntegerForArray(i)][j].getLengthOfShip() == 7) {
+						} else if (grid[i][j].getLengthOfShip() == 7) {
 							System.out.print("F ");
-						} else if (grid[switchCounterToIntegerForArray(i)][j].getLengthOfShip() == 8) {
+						} else if (grid[i][j].getLengthOfShip() == 8) {
 							System.out.print("G ");
 						}
-					} else if (!(grid[switchCounterToIntegerForArray(i)][j].hasShip())) {
+					} else if (!(grid[i][j].hasShip())) {
 						System.out.print("- ");
 					}
 					if (j >= 9) {
@@ -184,28 +172,28 @@ public class Grid {
 					}
 					// type == 2; combined
 				} else {
-					if (grid[switchCounterToIntegerForArray(i)][j].checkMiss())
+					if (grid[i][j].checkMiss())
 						System.out.print("O ");
-					else if (grid[switchCounterToIntegerForArray(i)][j].checkHit())
+					else if (grid[i][j].checkHit())
 						System.out.print("X ");
-					else if (grid[switchCounterToIntegerForArray(i)][j].hasShip()) {
+					else if (grid[i][j].hasShip()) {
 						// System.out.print("X ");
-						if (grid[switchCounterToIntegerForArray(i)][j].getLengthOfShip() == 2) {
+						if (grid[i][j].getLengthOfShip() == 2) {
 							System.out.print("A ");
-						} else if (grid[switchCounterToIntegerForArray(i)][j].getLengthOfShip() == 3) {
+						} else if (grid[i][j].getLengthOfShip() == 3) {
 							System.out.print("B ");
-						} else if (grid[switchCounterToIntegerForArray(i)][j].getLengthOfShip() == 4) {
+						} else if (grid[i][j].getLengthOfShip() == 4) {
 							System.out.print("C ");
-						} else if (grid[switchCounterToIntegerForArray(i)][j].getLengthOfShip() == 5) {
+						} else if (grid[i][j].getLengthOfShip() == 5) {
 							System.out.print("D ");
-						} else if (grid[switchCounterToIntegerForArray(i)][j].getLengthOfShip() == 6) {
+						} else if (grid[i][j].getLengthOfShip() == 6) {
 							System.out.print("E ");
-						} else if (grid[switchCounterToIntegerForArray(i)][j].getLengthOfShip() == 7) {
+						} else if (grid[i][j].getLengthOfShip() == 7) {
 							System.out.print("F ");
-						} else if (grid[switchCounterToIntegerForArray(i)][j].getLengthOfShip() == 8) {
+						} else if (grid[i][j].getLengthOfShip() == 8) {
 							System.out.print("G ");
 						}
-					} else if (!(grid[switchCounterToIntegerForArray(i)][j].hasShip())) {
+					} else if (!(grid[i][j].hasShip())) {
 						System.out.print("- ");
 					}
 					if (j >= 9) {
@@ -217,11 +205,13 @@ public class Grid {
 		}
 	}
 
-	public int switchCounterToIntegerForArray(int val) {
-		if (val < 65 || val > 90) {
-			throw new IllegalArgumentException("ERROR OCCURED IN SWITCH");
+	private static char convertIntToLetter(int val) {
+		if (val < 0 || val >= NUM_ROWS) {
+			return 'Z';
 		} else {
-			return val - 65;
+			int value = val + 65;
+			char letter = (char) value;
+			return letter;
 		}
 	}
 }

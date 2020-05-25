@@ -89,7 +89,7 @@ public class Battleship {
 
 					if (col >= 0 && col <= Grid.NUM_COLS - 1 && row != -1 && dir != -1) // Check valid input
 					{
-						if (!hasErrors(row, col, dir, p, s)) // Check if errors will produce
+						if (!hasErrors(row, col, dir, p, s.getLength())) // Check if errors will produce
 						{
 							break;
 						}
@@ -108,9 +108,7 @@ public class Battleship {
 		}
 	}
 
-	private static boolean hasErrors(int row, int col, int dir, Player p, Ship s) {
-		int length = s.getLength();
-
+	private static boolean hasErrors(int row, int col, int dir, Player p, int length) {
 		if (shipNotFit(row, col, dir, length)) {
 			System.out.println("SHIP DOES NOT FIT");
 			return true;
@@ -244,13 +242,15 @@ public class Battleship {
 				System.out.println("Invalid location!");
 			}
 		}
-
+		
+		markResult(p, opp, row, col, oldRow, oldCol);
+	}
+	
+	private static void markResult(Player p, Player opp, int row, int col, String oldRow, int oldCol) {
 		if (opp.playerGrid.hasShip(row, col)) {
 			markHit(p, opp, row, col, oldRow, oldCol);
 		} else {
-			p.oppGrid.markMiss(row, col);
-			opp.playerGrid.markMiss(row, col);
-			System.out.println("\nPlayer MISS AT " + oldRow + oldCol);
+			markMiss(p, opp, row, col, oldRow, oldCol);
 		}
 	}
 	
@@ -265,6 +265,12 @@ public class Battleship {
 		} else {
 			System.out.println("\nPlayer HIT AND SUNK " + s.getType() + " AT " + oldRow + oldCol);
 		}
+	}
+	
+	private static void markMiss(Player p, Player opp, int row, int col, String oldRow, int oldCol) {
+		p.oppGrid.markMiss(row, col);
+		opp.playerGrid.markMiss(row, col);
+		System.out.println("\nPlayer MISS AT " + oldRow + oldCol);
 	}
 
 	/* HELPER METHODS */

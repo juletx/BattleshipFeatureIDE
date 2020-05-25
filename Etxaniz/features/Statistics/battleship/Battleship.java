@@ -15,7 +15,7 @@ public class Battleship {
 		player2.printStatistics();
 	}
 	
-	private static void playGamePlayer1(Player player1, Player player2) {
+	private static void playGamePlayer2(Player player1, Player player2) {
 		original(player1, player2);
 		player1.printStatistics();
 	}

@@ -14,20 +14,16 @@ public class Battleship {
 		int row = calculateRow();
 		int col = calculateCol();
 
-		// While computer already guessed this position, make a new random guess
+		// While computer already guessed this position, make a new guess
 		while (comp.oppGrid.alreadyGuessed(row, col)) {
-			row = calculateRow();
 			col = calculateCol();
+			if (comp.oppGrid.alreadyGuessed(row, col)) {
+				row = calculateRow();
+			}
 		}
 
-		if (user.playerGrid.hasShip(row, col)) {
-			markHit(comp, user, row, col, convertIntToLetter(row), convertCompColToRegular(col));
-		} else {
-			comp.oppGrid.markMiss(row, col);
-			user.playerGrid.markMiss(row, col);
-			System.out.println("COMP MISS AT " + convertIntToLetter(row) + convertCompColToRegular(col));
-		}
-
+		markResult(comp, user, row, col, convertIntToLetter(row), convertCompColToRegular(col));
+		
 		user.printStatistics();
 		System.out.println("\nYOUR BOARD...PRESS ENTER TO CONTINUE...");
 		reader.nextLine();

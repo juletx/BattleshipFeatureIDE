@@ -11,7 +11,7 @@ public class Battleship {
 	}
 
 	private static void playGame(Player player1, Player player2) {
-		while (player1.hasShots() || player2.hasShots()) {
+		while (player1.hasShots() && !player2.hasLost() || player2.hasShots() && !player1.hasLost()) {
 			if (player2.hasLost() && player1.hasLost()) {
 				break;
 			} else if (player2.hasLost()) {
@@ -35,6 +35,13 @@ public class Battleship {
 			System.out.println("Player2 (" + points2 + " points) WINS! Player1 (" + points1 + " points) LOSES!");
 		}
 	}
+	
+	private static void markResult(Player p, Player opp, int row, int col, String oldRow, int oldCol) {
+		original(p, opp, row, col, oldRow, oldCol);
+		int points = p.getPoints();
+		int shots = p.numShotsLeft();
+		System.out.println("Player has " + points + " points and " + shots + " shots left.\n" );
+	}
 
 	private static void markHit(Player p, Player opp, int row, int col, String oldRow, int oldCol) {
 		p.oppGrid.markHit(row, col);
@@ -55,8 +62,11 @@ public class Battleship {
 				System.out.println("\nPlayer HIT AND SUNK " + s.getType() + " AT " + oldRow + oldCol + " (" + s.getLength() + " points)");
 			}
 		}
-		int points = p.getPoints();
-		int shots = p.numShotsLeft();
-		System.out.println("Player has " + points + " points and " + shots + " shots left.\n" );
+	}
+	
+	private static void markMiss(Player p, Player opp, int row, int col, String oldRow, int oldCol) {
+		p.oppGrid.markMiss(row, col);
+		opp.playerGrid.markMiss(row, col);
+		System.out.println("\nPlayer MISS AT " + oldRow + oldCol + " (" + 0 + " points)");
 	}
 }

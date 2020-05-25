@@ -4,7 +4,7 @@ public class Player {
 	public void printStatistics() {
 		System.out.println("STATISTICS:");
 
-		int shots = playerGrid.getShots();
+		int shots = playerGrid.getHits() + playerGrid.getMisses();
 		int hits = playerGrid.getHits();
 		int misses = playerGrid.getMisses();
 		double hitsRate = 0;

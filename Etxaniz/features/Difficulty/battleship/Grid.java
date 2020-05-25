@@ -142,9 +142,6 @@ public class Grid {
 					} else if (grid[i][j].checkHit()) {
 						System.out.print("X ");
 					}
-					if (j >= 9) {
-						System.out.print(" ");
-					}
 					// type == 1; ships
 				} else if (type == 1) {
 					if (grid[i][j].hasShip()) {
@@ -166,9 +163,6 @@ public class Grid {
 						}
 					} else if (!(grid[i][j].hasShip())) {
 						System.out.print("- ");
-					}
-					if (j >= 9) {
-						System.out.print(" ");
 					}
 					// type == 2; combined
 				} else {
@@ -196,9 +190,9 @@ public class Grid {
 					} else if (!(grid[i][j].hasShip())) {
 						System.out.print("- ");
 					}
-					if (j >= 9) {
-						System.out.print(" ");
-					}
+				}
+				if (j >= 9) {
+					System.out.print(" ");
 				}
 			}
 			System.out.println();

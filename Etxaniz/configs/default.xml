@@ -12,12 +12,12 @@
 	<feature automatic="selected" name="Computer"/>
 	<feature automatic="selected" name="Strategy"/>
 	<feature automatic="selected" name="Row"/>
-	<feature automatic="unselected" name="TopDown"/>
+	<feature manual="selected" name="TopDown"/>
 	<feature automatic="unselected" name="BottomUp"/>
-	<feature manual="selected" name="RandomRow"/>
+	<feature automatic="unselected" name="RandomRow"/>
 	<feature automatic="selected" name="Column"/>
-	<feature automatic="unselected" name="LeftRight"/>
+	<feature manual="selected" name="LeftRight"/>
 	<feature automatic="unselected" name="RightLeft"/>
-	<feature manual="selected" name="RandomColumn"/>
+	<feature automatic="unselected" name="RandomColumn"/>
 	<feature name="Clever"/>
 </configuration>

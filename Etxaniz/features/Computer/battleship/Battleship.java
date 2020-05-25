@@ -24,7 +24,7 @@ public class Battleship {
 
 				// System.out.println("DEBUG: row-" + row + "; col-" + col + "; dir-" + dir);
 
-				while (hasErrorsComp(row, col, dir, p, s)) // while the random nums make error, start again
+				while (hasErrorsComp(row, col, dir, p, s.getLength())) // while the random nums make error, start again
 				{
 					row = Randomizer.nextInt(0, Grid.NUM_ROWS - 1);
 					col = Randomizer.nextInt(0, Grid.NUM_COLS - 1);
@@ -41,9 +41,7 @@ public class Battleship {
 		}
 	}
 
-	private static boolean hasErrorsComp(int row, int col, int dir, Player p, Ship s) {
-		int length = s.getLength();
-
+	private static boolean hasErrorsComp(int row, int col, int dir, Player p, int length) {
 		if (shipNotFit(row, col, dir, length)) {
 			return true;
 		}

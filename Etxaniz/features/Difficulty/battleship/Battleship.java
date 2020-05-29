@@ -17,17 +17,25 @@ public class Battleship {
 	}
 
 	private static Player setupPlayer1() {
-		System.out.println("\nPlayer1 SETUP:");
 		Player player1 = new Player();
+		setPlayer1Name(player1);
 		setup(player1);
 		return player1;
 	}
 
 	private static Player setupPlayer2() {
-		System.out.println("\nPlayer2 SETUP:");
 		Player player2 = new Player();
+		setPlayer2Name(player2);
 		setup(player2);
 		return player2;
+	}
+	
+	private static void setPlayer1Name(Player player1) {
+		player1.setName("Player1");
+	}
+	
+	private static void setPlayer2Name(Player player2) {
+		player2.setName("Player2");
 	}
 
 	private static void playGame(Player player1, Player player2) {
@@ -35,34 +43,33 @@ public class Battleship {
 			playGamePlayer1(player1, player2);
 			playGamePlayer2(player1, player2);
 			if (player2.hasLost() && player1.hasLost()) {
-				System.out.println("Player1 and Player2 DRAW!");
+				System.out.println(player1.getName() + " and " + player2.getName() + " DRAW!");
 				break;
 			} else if (player2.hasLost()) {
-				System.out.println("Player1 WINS! Player2 LOSES!");
+				System.out.println(player1.getName() + " WINS! " + player2.getName() + " LOSES!");
 				break;
 			} else if (player1.hasLost()) {
-				System.out.println("Player2 WINS! Player1 LOSES!");
+				System.out.println(player2.getName() + " WINS! " + player1.getName() + " LOSES!");
 				break;
 			}
 		}
 	}
 
 	private static void playGamePlayer1(Player player1, Player player2) {
-		System.out.println("\nPlayer1 MAKE GUESS:");
 		askForGuess(player1, player2);
 	}
 
 	private static void playGamePlayer2(Player player1, Player player2) {
-		System.out.println("\nPlayer2 MAKE GUESS:");
 		askForGuess(player2, player1);
 	}
 
 	private static void setup(Player p) {
+		System.out.println("\n" + p.getName() + " SETUP:");
 		p.playerGrid.printShips();
 		System.out.println();
 		while (p.numOfShipsLeft() > 0) {
 			for (Ship s : p.ships) {
-				System.out.println("You have " + p.numOfShipsLeft() + " remaining ships to place.\n");
+				System.out.println(p.getName() + " has " + p.numOfShipsLeft() + " remaining ships to place.\n");
 				System.out.println("Ship #" + s.getNumber() + ": " + s.getType() + " (Length=" + s.getLength() + ")");
 				int row = -1;
 				int col = -1;
@@ -205,7 +212,7 @@ public class Battleship {
 	}
 
 	private static void askForGuess(Player p, Player opp) {
-		System.out.println("Viewing My Guesses:");
+		System.out.println("\n" + p.getName() + " MAKE GUESS:");
 		p.oppGrid.printStatus();
 
 		int row = -1;
@@ -218,7 +225,7 @@ public class Battleship {
 			System.out.print("\nType in row (A-" + convertIntToLetter(Grid.NUM_ROWS - 1) + "): ");
 			String userInputRow = reader.next();
 			userInputRow = userInputRow.toUpperCase();
-			oldRow = userInputRow;
+			oldRow = userInputRow.substring(0, 1);
 			row = convertLetterToInt(userInputRow);
 
 			try {
@@ -261,16 +268,16 @@ public class Battleship {
 		Ship s = opp.ships[number - 1];
 		s.addHit();
 		if (s.isHit()) {
-			System.out.println("\nPlayer HIT AT " + oldRow + oldCol);
+			System.out.println("\n" + p.getName() + " HIT AT " + oldRow + oldCol);
 		} else {
-			System.out.println("\nPlayer HIT AND SUNK " + s.getType() + " AT " + oldRow + oldCol);
+			System.out.println("\n" + p.getName() + " HIT AND SUNK " + s.getType() + " AT " + oldRow + oldCol);
 		}
 	}
 	
 	private static void markMiss(Player p, Player opp, int row, int col, String oldRow, int oldCol) {
 		p.oppGrid.markMiss(row, col);
 		opp.playerGrid.markMiss(row, col);
-		System.out.println("\nPlayer MISS AT " + oldRow + oldCol);
+		System.out.println("\n" + p.getName() + " MISS AT " + oldRow + oldCol);
 	}
 
 	/* HELPER METHODS */

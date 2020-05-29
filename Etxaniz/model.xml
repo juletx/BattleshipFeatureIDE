@@ -1,36 +1,39 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-	<featureModel>
-		<properties/>
-		<struct>
-			<and abstract="true" mandatory="true" name="Battleship">
-				<feature mandatory="true" name="About"/>
-				<alt mandatory="true" name="Difficulty">
-					<feature name="Beginner"/>
-					<feature name="Intermediate"/>
-					<feature name="Expert"/>
-				</alt>
-				<feature name="Statistics"/>
-				<feature name="Challenge"/>
-				<feature name="PlayerNames"/>
-				<and name="Computer">
-					<and mandatory="true" name="Strategy">
-						<alt mandatory="true" name="Row">
-							<feature name="TopDown"/>
-							<feature name="BottomUp"/>
-							<feature name="RandomRow"/>
-						</alt>
-						<alt mandatory="true" name="Column">
-							<feature name="LeftRight"/>
-							<feature name="RightLeft"/>
-							<feature name="RandomColumn"/>
-						</alt>
-						<feature name="Clever"/>
-					</and>
+<featureModel>
+	<properties>
+		<graphics key="showhiddenfeatures" value="true"/>
+		<graphics key="legendautolayout" value="true"/>
+		<graphics key="showshortnames" value="false"/>
+		<graphics key="layout" value="horizontal"/>
+		<graphics key="showcollapsedconstraints" value="true"/>
+		<graphics key="legendhidden" value="false"/>
+		<graphics key="layoutalgorithm" value="1"/>
+	</properties>
+	<struct>
+		<and abstract="true" mandatory="true" name="Battleship">
+			<feature mandatory="true" name="About"/>
+			<alt mandatory="true" name="Difficulty">
+				<feature name="Beginner"/>
+				<feature name="Intermediate"/>
+				<feature name="Expert"/>
+			</alt>
+			<feature name="PlayerNames"/>
+			<and name="Computer">
+				<and mandatory="true" name="Strategy">
+					<alt abstract="true" mandatory="true" name="Row">
+						<feature name="TopDown"/>
+						<feature name="BottomUp"/>
+						<feature name="RandomRow"/>
+					</alt>
+					<alt abstract="true" mandatory="true" name="Column">
+						<feature name="LeftRight"/>
+						<feature name="RightLeft"/>
+						<feature name="RandomColumn"/>
+					</alt>
 				</and>
 			</and>
-		</struct>
-		<constraints/>
-		<calculations Auto="true" Constraints="true" Features="true" Redundant="true" Tautology="true"/>
-		<comments/>
-		<featureOrder userDefined="false"/>
-	</featureModel>
+			<feature name="Statistics"/>
+			<feature name="Challenge"/>
+		</and>
+	</struct>
+</featureModel>

@@ -4,6 +4,7 @@ public class Player {
 	public Ship[] ships;
 	public Grid playerGrid;
 	public Grid oppGrid;
+	private String name;
 
 	public Player() {
 		ships = new Ship[NUM_OF_SHIPS];
@@ -45,5 +46,13 @@ public class Player {
 			}
 		}
 		return true;
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
+	public void setName(String val) {
+		name = val;
 	}
 }

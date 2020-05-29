@@ -1,7 +1,5 @@
 package battleship;
 
-import Ship.ShipType;
-
 public class Ship {
 	enum ShipType {
 		PATROL, SUBMARINE, DESTROYER, CRUISER;

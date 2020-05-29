@@ -10,15 +10,15 @@ public class Battleship {
 		System.out.println("PlayerNames © 2020 Julen Etxaniz");
 	}
 	
-	private static void setup(Player p) {
-		System.out.print("Type player name: ");
+	private static void setPlayer1Name(Player player1) {
+		System.out.print("\nType Player1 name: ");
 		String name = reader.next();
-		p.setName(name);
-		original(p);
+		player1.setName(name);
 	}
 	
-//	private static void setupComputer(Player p) {
-//		p.setName("Computer");
-//		original(p);
-//	}
+	private static void setPlayer2Name(Player player2) {
+		System.out.print("\nType Player2 name: ");
+		String name = reader.next();
+		player2.setName(name);
+	}
 }

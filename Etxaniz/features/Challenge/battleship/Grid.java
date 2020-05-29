@@ -2,13 +2,14 @@ package battleship;
 
 public class Grid {
 	private int shots = 0;
-	public static final int NUM_SHOTS = 25;
+	private int hits = 0;
 
 	// Mark a hit in this location by calling the markHit method
 	// on the Location object.
 	public void markHit(int row, int col) {
-		original(row, col);
+		grid[row][col].markHit();
 		shots++;
+		hits++;
 	}
 
 	// Mark a miss on this location.
@@ -19,5 +20,9 @@ public class Grid {
 	
 	public int getShots() {
 		return shots;
+	}
+	
+	public int getHits() {
+		return hits;
 	}
 }

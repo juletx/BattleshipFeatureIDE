@@ -6,16 +6,19 @@ public class Battleship {
 	}
 	
 	private static Player setupPlayer2() {
-		System.out.println("Computer SETUP...DONE...PRESS ENTER TO CONTINUE...");
-		reader.nextLine();
 		Player computer = new Player();
+		setPlayer2Name(computer);
 		setupComputer(computer);
-		System.out.println("\nCOMPUTER GRID (FOR DEBUG)...");
-		computer.playerGrid.printShips();
 		return computer;
+	}
+	
+	private static void setPlayer2Name(Player player2) {
+		player2.setName("Computer");
 	}
 
 	private static void setupComputer(Player p) {
+		System.out.println("\n" + p.getName() + " SETUP...DONE...PRESS ENTER TO CONTINUE...");
+		reader.nextLine();
 		while (p.numOfShipsLeft() > 0) {
 			for (Ship s : p.ships) {
 				int row = Randomizer.nextInt(0, Grid.NUM_ROWS - 1);
@@ -39,6 +42,8 @@ public class Battleship {
 				p.playerGrid.addShip(s);
 			}
 		}
+		System.out.println("\n" + p.getName() + " GRID (FOR DEBUG)...");
+		p.playerGrid.printShips();
 	}
 
 	private static boolean hasErrorsComp(int row, int col, int dir, Player p, int length) {

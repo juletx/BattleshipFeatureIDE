@@ -6,8 +6,6 @@
 	<feature manual="selected" name="Beginner"/>
 	<feature automatic="unselected" name="Intermediate"/>
 	<feature automatic="unselected" name="Expert"/>
-	<feature name="Statistics"/>
-	<feature name="Challenge"/>
 	<feature name="PlayerNames"/>
 	<feature name="Computer"/>
 	<feature name="Strategy"/>
@@ -19,5 +17,6 @@
 	<feature name="LeftRight"/>
 	<feature name="RightLeft"/>
 	<feature name="RandomColumn"/>
-	<feature name="Clever"/>
+	<feature name="Statistics"/>
+	<feature name="Challenge"/>
 </configuration>

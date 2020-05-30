@@ -1,10 +1,7 @@
 package battleship;
 
 public class Battleship {
-	public static void main(String[] args) {
-		original(args);
-	}
-	
+	// Setup computer
 	private static Player setupPlayer2() {
 		Player computer = new Player();
 		setPlayer2Name(computer);
@@ -12,10 +9,12 @@ public class Battleship {
 		return computer;
 	}
 	
+	// Set computer name
 	private static void setPlayer2Name(Player player2) {
 		player2.setName("Computer");
 	}
 
+	// Setup computer ships randomly
 	private static void setupComputer(Player p) {
 		System.out.println("\n" + p.getName() + " SETUP...DONE...PRESS ENTER TO CONTINUE...");
 		reader.nextLine();
@@ -46,6 +45,7 @@ public class Battleship {
 		p.playerGrid.printShips();
 	}
 
+	// Check if ship location has errors
 	private static boolean hasErrorsComp(int row, int col, int dir, Player p, int length) {
 		if (shipNotFit(row, col, dir, length)) {
 			return true;

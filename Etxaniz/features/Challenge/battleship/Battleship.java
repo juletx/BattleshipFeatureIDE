@@ -1,15 +1,15 @@
 package battleship;
 
 public class Battleship {
-	public static void main(String[] args) {
-		original(args);
-	}
-
+	// Print about info
 	private static void printAbout() {
 		original();
 		System.out.println("Challenge © 2020 Julen Etxaniz");
 	}
 
+	// Play game until both players lose or no shots are left
+	// The player with more points wins
+	// If both players have the same number of points the one with more hits wins
 	private static void playGame(Player player1, Player player2) {
 		while (player1.hasShots() && !player2.hasLost() || player2.hasShots() && !player1.hasLost()) {
 			if (player2.hasLost() && player1.hasLost()) {
@@ -49,6 +49,7 @@ public class Battleship {
 		}
 	}
 
+	// Print number of points and shots left
 	private static void markResult(Player p, Player opp, int row, int col, String oldRow, int oldCol) {
 		original(p, opp, row, col, oldRow, oldCol);
 		int points = p.getPoints();
@@ -56,6 +57,7 @@ public class Battleship {
 		System.out.println(p.getName() + " has " + points + " points and " + shots + " shots left.\n");
 	}
 
+	// Mark and print hit result and points
 	private static void markHit(Player p, Player opp, int row, int col, String oldRow, int oldCol) {
 		p.oppGrid.markHit(row, col);
 		opp.playerGrid.markHit(row, col);
@@ -78,6 +80,7 @@ public class Battleship {
 		}
 	}
 
+	// Mark and print miss result and points
 	private static void markMiss(Player p, Player opp, int row, int col, String oldRow, int oldCol) {
 		p.oppGrid.markMiss(row, col);
 		opp.playerGrid.markMiss(row, col);

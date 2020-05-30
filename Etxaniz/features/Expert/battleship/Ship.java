@@ -5,6 +5,7 @@ public class Ship {
 		PATROL, SUBMARINE, DESTROYER, CRUISER, BATTLECRUISER, BATTLESHIP, CARRIER;
 	}
 
+	// Set ship type depending on length
 	public Ship(int length, int number) {
 		switch (length) {
 		case 2:

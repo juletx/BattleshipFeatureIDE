@@ -84,7 +84,7 @@ public class Ship {
 		return type;
 	}
 	
-	// Increments hits
+	// Increment hits
 	public void addHit() {
 		hits++;
 	}

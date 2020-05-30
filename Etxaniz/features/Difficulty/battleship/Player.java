@@ -7,8 +7,8 @@ public class Player {
 	private String name;
 
 	public Player() {
-		ships = new Ship[NUM_OF_SHIPS];
-		for (int i = 0; i < NUM_OF_SHIPS; i++) {
+		ships = new Ship[numOfShips()];
+		for (int i = 0; i < numOfShips(); i++) {
 			Ship tempShip = new Ship(SHIP_LENGTHS[i], i + 1);
 			ships[i] = tempShip;
 		}
@@ -17,14 +17,21 @@ public class Player {
 		oppGrid = new Grid();
 	}
 
+	// Add ships to player grid
 	public void addShips() {
 		for (Ship s : ships) {
 			playerGrid.addShip(s);
 		}
 	}
+	
+	// Get number of ships
+	public int numOfShips() {
+		return SHIP_LENGTHS.length;
+	}
 
+	// Get number of ships left
 	public int numOfShipsLeft() {
-		int counter = NUM_OF_SHIPS;
+		int counter = numOfShips();
 		for (Ship s : ships) {
 			if (s.isLocationSet() && s.isDirectionSet())
 				counter--;
@@ -33,12 +40,14 @@ public class Player {
 		return counter;
 	}
 
+	// Choose ship location
 	public void chooseShipLocation(Ship s, int row, int col, int direction) {
 		s.setLocation(row, col);
 		s.setDirection(direction);
 		playerGrid.addShip(s);
 	}
 	
+	// Check is player has lost
 	public boolean hasLost() {
 		for (Ship s : ships) {
 			if (!s.isSunk()) {
@@ -48,10 +57,12 @@ public class Player {
 		return true;
 	}
 	
+	// Get player name
 	public String getName() {
 		return name;
 	}
 	
+	// Set player name
 	public void setName(String val) {
 		name = val;
 	}

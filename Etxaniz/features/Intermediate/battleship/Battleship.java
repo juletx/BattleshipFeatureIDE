@@ -1,10 +1,7 @@
 package battleship;
 
 public class Battleship {
-	public static void main(String[] args) {
-		original(args);
-	}
-	
+	// Print about info
 	private static void printAbout() {
 		original();
 		System.out.println("Difficulty Intermediate © 2020 Julen Etxaniz");

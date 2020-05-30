@@ -5,6 +5,7 @@ public class Battleship {
 		printAbout();
 	}
 	
+	// Print about info
 	private static void printAbout() {
 		System.out.println("ABOUT:");
 		System.out.println("Original Application Copyright © 2015 Yuval Marcus");

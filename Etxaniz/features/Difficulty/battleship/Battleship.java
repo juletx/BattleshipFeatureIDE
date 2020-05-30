@@ -6,6 +6,7 @@ import java.util.InputMismatchException;
 public class Battleship {
 	public static Scanner reader = new Scanner(System.in);
 
+	// Application main method
 	public static void main(String[] args) {
 		System.out.println("JAVA BATTLESHIP\n");
 		original(args);
@@ -16,6 +17,7 @@ public class Battleship {
 		playGame(player1, player2);
 	}
 
+	// Setup player 1
 	private static Player setupPlayer1() {
 		Player player1 = new Player();
 		setPlayer1Name(player1);
@@ -23,21 +25,25 @@ public class Battleship {
 		return player1;
 	}
 
+	// Setup player 2
 	private static Player setupPlayer2() {
 		Player player2 = new Player();
 		setPlayer2Name(player2);
 		setup(player2);
 		return player2;
 	}
-	
+
+	// Set player 1 name
 	private static void setPlayer1Name(Player player1) {
 		player1.setName("Player1");
 	}
-	
+
+	// Set player 2 name
 	private static void setPlayer2Name(Player player2) {
 		player2.setName("Player2");
 	}
 
+	// Play game until any player loses
 	private static void playGame(Player player1, Player player2) {
 		while (true) {
 			playGamePlayer1(player1, player2);
@@ -55,14 +61,17 @@ public class Battleship {
 		}
 	}
 
+	// Play game player 1
 	private static void playGamePlayer1(Player player1, Player player2) {
 		askForGuess(player1, player2);
 	}
 
+	// Play game player 2
 	private static void playGamePlayer2(Player player1, Player player2) {
 		askForGuess(player2, player1);
 	}
 
+	// Setup player ships
 	private static void setup(Player p) {
 		System.out.println("\n" + p.getName() + " SETUP:");
 		p.playerGrid.printShips();
@@ -115,6 +124,7 @@ public class Battleship {
 		}
 	}
 
+	// Check if ship location has errors
 	private static boolean hasErrors(int row, int col, int dir, Player p, int length) {
 		if (shipNotFit(row, col, dir, length)) {
 			System.out.println("SHIP DOES NOT FIT");
@@ -134,8 +144,9 @@ public class Battleship {
 		return false;
 	}
 
+	// Check if ship is off grid
 	private static boolean shipNotFit(int row, int col, int dir, int length) {
-		// Check if off grid - Horizontal
+		// Horizontal
 		if (dir == 0) {
 			int checker = length + col;
 			// System.out.println("DEBUG: checker is " + checker);
@@ -143,9 +154,8 @@ public class Battleship {
 				return true;
 			}
 		}
-		// Check if off grid - Vertical
-		if (dir == 1) // VERTICAL
-		{
+		// Vertical
+		if (dir == 1) {
 			int checker = length + row;
 			// System.out.println("DEBUG: checker is " + checker);
 			if (checker > Grid.NUM_ROWS) {
@@ -155,10 +165,10 @@ public class Battleship {
 		return false;
 	}
 
+	// Check if overlapping with another ship
 	private static boolean overlappingShip(int row, int col, int dir, int length, Player p) {
-		// Check if overlapping with another ship
-		if (dir == 0) // Hortizontal
-		{
+		// Hortizontal
+		if (dir == 0) {
 			// For each location a ship occupies, check if ship is already there
 			for (int i = col; i < col + length; i++) {
 				// System.out.println("DEBUG: row = " + row + "; col = " + i);
@@ -166,8 +176,7 @@ public class Battleship {
 					return true;
 				}
 			}
-		} else if (dir == 1) // Vertical
-		{
+		} else if (dir == 1) { // Vertical
 			// For each location a ship occupies, check if ship is already there
 			for (int i = row; i < row + length; i++) {
 				// System.out.println("DEBUG: row = " + row + "; col = " + i);
@@ -179,8 +188,8 @@ public class Battleship {
 		return false;
 	}
 
+	// Check if touching with another ship
 	private static boolean touchingShip(int row, int col, int dir, int length, Player p) {
-		// Check if touching with another ship
 		if (dir == 0) // Hortizontal
 		{
 			// For each location a ship occupies, check if another ship is touching
@@ -211,6 +220,7 @@ public class Battleship {
 		return false;
 	}
 
+	// Ask player for guess
 	private static void askForGuess(Player p, Player opp) {
 		System.out.println("\n" + p.getName() + " MAKE GUESS:");
 		p.oppGrid.printStatus();
@@ -249,10 +259,11 @@ public class Battleship {
 				System.out.println("Invalid location!");
 			}
 		}
-		
+
 		markResult(p, opp, row, col, oldRow, oldCol);
 	}
-	
+
+	// Mark guess result
 	private static void markResult(Player p, Player opp, int row, int col, String oldRow, int oldCol) {
 		if (opp.playerGrid.hasShip(row, col)) {
 			markHit(p, opp, row, col, oldRow, oldCol);
@@ -260,7 +271,8 @@ public class Battleship {
 			markMiss(p, opp, row, col, oldRow, oldCol);
 		}
 	}
-	
+
+	// Mark and print hit result
 	private static void markHit(Player p, Player opp, int row, int col, String oldRow, int oldCol) {
 		p.oppGrid.markHit(row, col);
 		opp.playerGrid.markHit(row, col);
@@ -273,14 +285,15 @@ public class Battleship {
 			System.out.println("\n" + p.getName() + " HIT AND SUNK " + s.getType() + " AT " + oldRow + oldCol);
 		}
 	}
-	
+
+	// Mark and print miss result
 	private static void markMiss(Player p, Player opp, int row, int col, String oldRow, int oldCol) {
 		p.oppGrid.markMiss(row, col);
 		opp.playerGrid.markMiss(row, col);
 		System.out.println("\n" + p.getName() + " MISS AT " + oldRow + oldCol);
 	}
 
-	/* HELPER METHODS */
+	// Convert ascii letter to int
 	private static int convertLetterToInt(String val) {
 		char letter = val.charAt(0);
 		int value = (int) letter - 65;
@@ -291,6 +304,7 @@ public class Battleship {
 		}
 	}
 
+	// Convert int to ascii letter
 	private static String convertIntToLetter(int val) {
 		if (val < 0 || val >= Grid.NUM_ROWS) {
 			return "Z";
@@ -301,6 +315,7 @@ public class Battleship {
 		}
 	}
 
+	// Convert user column to program column
 	private static int convertUserColToProCol(int val) {
 		if (val < 1 || val > Grid.NUM_COLS) {
 			return -1;

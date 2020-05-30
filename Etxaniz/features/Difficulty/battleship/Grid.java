@@ -5,7 +5,6 @@ public class Grid {
 
 	public Grid() {
 		grid = new Location[NUM_ROWS][NUM_COLS];
-
 		for (int row = 0; row < grid.length; row++) {
 			for (int col = 0; col < grid[row].length; col++) {
 				Location tempLoc = new Location();
@@ -50,10 +49,12 @@ public class Grid {
 		return grid[row][col].hasShip();
 	}
 
+	// Get the number of the ship at this location
 	public int getNumber(int row, int col) {
 		return grid[row][col].getNumberOfShip();
 	}
 
+	// Set the number of the ship at this location
 	public void setNumber(int row, int col, int val) {
 		grid[row][col].setNumberOfShip(val);
 	}
@@ -73,18 +74,22 @@ public class Grid {
 		return NUM_COLS;
 	}
 
+	// Print grid with status
 	public void printStatus() {
 		generalPrintMethod(0);
 	}
 
+	// Print grid with ships
 	public void printShips() {
 		generalPrintMethod(1);
 	}
 
+	// Print grid with status and ships combined
 	public void printCombined() {
 		generalPrintMethod(2);
 	}
 
+	// Add ship to grid by setting location attributes
 	public void addShip(Ship s) {
 		int row = s.getRow();
 		int col = s.getCol();
@@ -133,7 +138,7 @@ public class Grid {
 			System.out.print(theChar + " ");
 
 			for (int j = 0; j < NUM_COLS; j++) {
-				// type == 0; status
+				// status
 				if (type == 0) {
 					if (grid[i][j].isUnguessed()) {
 						System.out.print("- ");
@@ -142,51 +147,21 @@ public class Grid {
 					} else if (grid[i][j].checkHit()) {
 						System.out.print("X ");
 					}
-					// type == 1; ships
+					// ships
 				} else if (type == 1) {
 					if (grid[i][j].hasShip()) {
-						// System.out.print("X ");
-						if (grid[i][j].getLengthOfShip() == 2) {
-							System.out.print("A ");
-						} else if (grid[i][j].getLengthOfShip() == 3) {
-							System.out.print("B ");
-						} else if (grid[i][j].getLengthOfShip() == 4) {
-							System.out.print("C ");
-						} else if (grid[i][j].getLengthOfShip() == 5) {
-							System.out.print("D ");
-						} else if (grid[i][j].getLengthOfShip() == 6) {
-							System.out.print("E ");
-						} else if (grid[i][j].getLengthOfShip() == 7) {
-							System.out.print("F ");
-						} else if (grid[i][j].getLengthOfShip() == 8) {
-							System.out.print("G ");
-						}
+						printShipLetter(i, j);
 					} else if (!(grid[i][j].hasShip())) {
 						System.out.print("- ");
 					}
-					// type == 2; combined
+					// combined
 				} else {
 					if (grid[i][j].checkMiss())
 						System.out.print("O ");
 					else if (grid[i][j].checkHit())
 						System.out.print("X ");
 					else if (grid[i][j].hasShip()) {
-						// System.out.print("X ");
-						if (grid[i][j].getLengthOfShip() == 2) {
-							System.out.print("A ");
-						} else if (grid[i][j].getLengthOfShip() == 3) {
-							System.out.print("B ");
-						} else if (grid[i][j].getLengthOfShip() == 4) {
-							System.out.print("C ");
-						} else if (grid[i][j].getLengthOfShip() == 5) {
-							System.out.print("D ");
-						} else if (grid[i][j].getLengthOfShip() == 6) {
-							System.out.print("E ");
-						} else if (grid[i][j].getLengthOfShip() == 7) {
-							System.out.print("F ");
-						} else if (grid[i][j].getLengthOfShip() == 8) {
-							System.out.print("G ");
-						}
+						printShipLetter(i, j);
 					} else if (!(grid[i][j].hasShip())) {
 						System.out.print("- ");
 					}
@@ -199,6 +174,27 @@ public class Grid {
 		}
 	}
 
+	// Print ship letter depending on length
+	private void printShipLetter(int i, int j) {
+		int lengthOfShip = grid[i][j].getLengthOfShip();
+		if (lengthOfShip == 2) {
+			System.out.print("A ");
+		} else if (lengthOfShip == 3) {
+			System.out.print("B ");
+		} else if (lengthOfShip == 4) {
+			System.out.print("C ");
+		} else if (lengthOfShip == 5) {
+			System.out.print("D ");
+		} else if (lengthOfShip == 6) {
+			System.out.print("E ");
+		} else if (lengthOfShip == 7) {
+			System.out.print("F ");
+		} else if (lengthOfShip == 8) {
+			System.out.print("G ");
+		}
+	}
+
+	// Convert int to ascii character
 	private static char convertIntToLetter(int val) {
 		if (val < 0 || val >= NUM_ROWS) {
 			return 'Z';

@@ -2,16 +2,14 @@ package battleship;
 
 public class Battleship {
 	private static int col = -1;
-	
-	public static void main(String[] args) {
-		original(args);
-	}
-	
+
+	// Print about info
 	private static void printAbout() {
 		original();
 		System.out.println("Computer Strategy Column LeftRight © 2020 Julen Etxaniz");
 	}
 	
+	// Increment and return column
 	private static int calculateCol() {
 		if (col == Grid.NUM_COLS - 1) {
 			col = 0;

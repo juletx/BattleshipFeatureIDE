@@ -17,10 +17,12 @@ public class Grid {
 		misses++;
 	}
 	
+	// Get hit number
 	public int getHits() {
 		return hits;
 	}
 	
+	// Get miss number
 	public int getMisses() {
 		return misses;
 	}

@@ -18,10 +18,12 @@ public class Grid {
 		shots++;
 	}
 	
+	// Get number of shots
 	public int getShots() {
 		return shots;
 	}
 	
+	// Get number of hits
 	public int getHits() {
 		return hits;
 	}

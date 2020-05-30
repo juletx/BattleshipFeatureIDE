@@ -1,6 +1,10 @@
 package battleship;
 
 public class Player {
+	// Print player statistics with percentages
+	// First line number of shots, hits and misses
+	// Second line number of ships hit, sunk and to locate
+	// Next lines number of ships hit, sunk and to locate by ship type
 	public void printStatistics(Player opp) {
 		System.out.println("STATISTICS:");
 
@@ -33,9 +37,9 @@ public class Player {
 			}
 		}
 
-		double hitRate = (double) hit / NUM_OF_SHIPS * 100;
-		double sunkRate = (double) sunk / NUM_OF_SHIPS * 100;
-		double locateRate = (double) locate / NUM_OF_SHIPS * 100;
+		double hitRate = (double) hit / numOfShips() * 100;
+		double sunkRate = (double) sunk / numOfShips() * 100;
+		double locateRate = (double) locate / numOfShips() * 100;
 		int hitRateInt = (int) Math.round(hitRate);
 		int sunkRateInt = (int) Math.round(sunkRate);
 		int locateRateInt = (int) Math.round(locateRate);

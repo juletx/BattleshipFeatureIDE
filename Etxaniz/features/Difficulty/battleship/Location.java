@@ -77,26 +77,32 @@ public class Location {
 		return status;
 	}
 
+	// Get the length of the ship at this location
 	public int getLengthOfShip() {
 		return lengthOfShip;
 	}
 
+	// Set the length of the ship at this location
 	public void setLengthOfShip(int val) {
 		lengthOfShip = val;
 	}
 
+	// Get the direction of the ship at this location
 	public int getDirectionOfShip() {
 		return directionOfShip;
 	}
 
+	// Set the direction of the ship at this location
 	public void setDirectionOfShip(int val) {
 		directionOfShip = val;
 	}
 	
+	// Get the number of the ship at this location
 	public int getNumberOfShip() {
 		return numberOfShip;
 	}
 
+	// Set the number of the ship at this location
 	public void setNumberOfShip(int val) {
 		numberOfShip = val;
 	}

@@ -10,7 +10,7 @@ public class Battleship {
 	}
 	
 	// Decrement and return column
-	private static int calculateRow() {
+	private static int calculateCol() {
 		if (col == 0) {
 			col = Grid.NUM_COLS - 1;
 		} else {
